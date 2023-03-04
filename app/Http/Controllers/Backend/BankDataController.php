@@ -25,8 +25,12 @@ class BankDataController extends Controller
      */
     public function index()
     {
-        $data = Sitasi::select('*')->join('tb_sampel', 'tb_sampel.id', 'tb_sitasi.id_sampel')->join('tm_pengarang', 'tm_pengarang.id', 'tb_sitasi.id_pengarang')
-            ->orderByDesc('tb_sitasi.created_at')->get();
+        $data = Sitasi::select('*' ,'tb_sitasi.id')
+            ->join('tb_sampel', 'tb_sampel.id', 'tb_sitasi.id_sampel')
+            ->join('tm_pengarang', 'tm_pengarang.id', 'tb_sitasi.id_pengarang')
+            ->orderByDesc('tb_sitasi.created_at')
+            ->get();
+        
         return view('backend.bank-data.index', compact('data'));
     }
 
@@ -90,10 +94,8 @@ class BankDataController extends Controller
 
             return redirect()->route('bank-data.index')->withSuccess('Data Berhasil Ditambahkan');
         } catch (\Exception $e) {
-            return $e;
             return redirect()->back()->withErrors($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
-            return $e;
             return redirect()->back()->withErrors($e->getMessage());
         }
     }

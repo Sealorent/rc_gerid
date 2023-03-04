@@ -66,6 +66,7 @@
                                         <th style="width: 20%;">Data Sekuen</th>
                                         <th style="width: 5%">Judul</th>
                                         <th style="width: 5%">Author</th>
+                                        <th style="width: 5%">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -80,17 +81,14 @@
                                         <th>Data Sekuen</th>
                                         <th>Judul</th>
                                         <th>Author</th>
+                                        <th style="width: 5%">Opsi</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                     @forelse ($data as $item)
                                     @php
-
-                                    $virus =
-                                    App\Models\Virus::select('nama_virus')->where('id',$item->id_virus)->pluck('nama_virus')[0];
-                                    $genotipe =
-                                    App\Models\Genotipe::select('kode_genotipe')->where('id',$item->id_genotipe)->pluck('kode_genotipe')[0];
-
+                                    $virus = App\Models\Virus::select('nama_virus')->where('id',$item->id_virus)->pluck('nama_virus')[0];
+                                    $genotipe = App\Models\Genotipe::select('kode_genotipe')->where('id',$item->id_genotipe)->pluck('kode_genotipe')[0];
                                     @endphp
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
@@ -100,9 +98,27 @@
                                         <td>{{ tanggal_indo($item->tanggal_pengambilan)}}</td>
                                         <td>{{ $item->tempat }}</td>
                                         <td>{{ $item->nama_gen }}</td>
-                                        <td>{{ $item->data_sekuen }}</td>
+                                        <td style="text-align: justify;">{{ $item->data_sekuen }}</td>
                                         <td>{{ $item->judul_artikel }}</td>
                                         <td>{{ $item->nama_pengarang.';'.$item->anggota }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-start">
+                                                <a class="btn btn-primary"
+                                                    href="{{ route('bank-data.edit',$item->id) }}"
+                                                    style="margin-right: 0.5em"><i
+                                                        class="fa fa-pencil text-center m-0"></i>
+                                                </a>
+                                                <form action="{{ route('bank-data.destroy', $item->id) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit"
+                                                        onclick="return confirm('Are you sure you want to delete this item?');"
+                                                        class="btn btn-danger"><i
+                                                            class="fa fa-trash text-center m-0"></i></button>
+                                                </form>
+                                            </div>
+                                        </td>
                                     </tr>
                                     @empty
                                     <tr>
