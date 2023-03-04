@@ -113,6 +113,9 @@
                                 </div>
 
                                 <p class="text-muted text-center p-b-5">Sign in with your regular account</p>
+                                @if (!$errors->isEmpty())
+                                    <p class="text-danger">Silahkan Cek Kembali Email & Password Anda</p>
+                                @endif 
                                 <div class="form-group form-primary">
                                     <input type="text" name="email" class="form-control" required=""
                                         placeholder="e-mail">
@@ -129,9 +132,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if (session('404'))
-                                <p>p</p>
-                                @endif
+                               
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
                                         <div class="d-grid">
