@@ -7,8 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>{{ $title }}</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo-polije-old.png') }}" />
+    <title>{{ env('APP_NAME')}}</title>
+    <link rel="icon" href="{{ asset('assets/images/logo-rc_gerid.png') }}" type="image/x-icon">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="{{  asset('bower_components/bootstrap/css/bootstrap.min.css') }}">

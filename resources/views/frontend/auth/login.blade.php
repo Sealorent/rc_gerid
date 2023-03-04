@@ -102,7 +102,8 @@
                     <form class="md-float-material form-material" action="{{ route('postSignIn') }}" method="POST">
                         @csrf
                         <div class="text-center">
-                            <img src="{{ asset('assets/images/logo.png') }}" alt="logo.png">
+                            <img class="img-fluid" style="width: 3em; height: 3em;" src="{{ asset('assets/images/logo-rc_gerid.png') }}" alt="Theme-Logo" />
+                            <span style=" letter-spacing: 0.5em;">RC GERID</span>
                         </div>
                         <div class="auth-box card">
                             <div class="card-block">
@@ -113,6 +114,9 @@
                                 </div>
 
                                 <p class="text-muted text-center p-b-5">Sign in with your regular account</p>
+                                @if (!$errors->isEmpty())
+                                    <p class="text-danger">Silahkan Cek Kembali Email & Password Anda</p>
+                                @endif 
                                 <div class="form-group form-primary">
                                     <input type="text" name="email" class="form-control" required=""
                                         placeholder="e-mail">
@@ -129,9 +133,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if (session('404'))
-                                <p>p</p>
-                                @endif
+                               
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
                                         <div class="d-grid">

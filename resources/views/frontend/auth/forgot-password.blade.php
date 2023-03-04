@@ -3,7 +3,8 @@
 <html lang="en">
 
 <head>
-    <title>Lupa Password</title>
+    <title>Lupa Password  {{ env('APP_NAME')}}</title>
+    <link rel="icon" href="{{ asset('assets/images/logo-rc_gerid.png') }}" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,7 +14,6 @@
         content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="colorlib" />
     <!-- Favicon icon -->
-    <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pages.css') }}">
     <style>
-        input {
+        input,h3 {
             font-family: 'Open Sans, sans-serif';
         }
     </style>
@@ -41,58 +41,7 @@
 
 <body themebg-pattern="theme1">
     <!-- Pre-loader start -->
-    <div class=" theme-loader">
-        <div class="loader-track">
-            <div class="preloader-wrapper">
-                <div class="spinner-layer spinner-blue">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-                <div class="spinner-layer spinner-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-yellow">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-green">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- Pre-loader end -->
     <section class="login-block">
         <!-- Container-fluid starts -->
@@ -104,7 +53,8 @@
                     <form class="md-float-material form-material" action="{{ route('password.email') }}" method="POST">
                         @csrf
                         <div class="text-center">
-                            <img src="{{ asset('assets/images/logo.png') }}" alt="logo.png">
+                                <img class="img-fluid" style="width: 3em; height: 3em;" src="{{ asset('assets/images/logo-rc_gerid.png') }}" alt="Theme-Logo" />
+                                <span style=" letter-spacing: 0.5em;">RC GERID</span>
                         </div>
                         <div class="auth-box card">
                             <div class="card-block">
@@ -129,18 +79,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="f-w-600 text-end">Kembali ke Halaman <a class="text-primary"
-                                        href="{{ route('signIn') }}">Login.</a>
-                                </p>
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <p class="text-inverse text-start m-b-0">Thank you.</p>
-                                        <p class="text-inverse text-start"><a href="index.html"><b>Back to
-                                                    website</b></a></p>
+                                        <p class="text-inverse text-start m-b-0">Terimakasih</p>
+                                        <p class="text-inverse text-start">Kembali ke Halaman<a href="{{ route('signIn') }}" class="text-primary"> Login </a></p>
                                     </div>
                                     <div class="col-md-2">
-                                        <img src="{{ asset('assets/images/auth/Logo-small-bottom.png') }}"
-                                            alt="small-logo.png">
+                                         <img class="img-fluid" style="width: 3em; height: 3em;" src="{{ asset('assets/images/logo-rc_gerid.png') }}" alt="Theme-Logo" />
+
                                     </div>
                                 </div>
                             </div>
