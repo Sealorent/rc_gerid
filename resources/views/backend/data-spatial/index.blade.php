@@ -132,14 +132,12 @@
                                 <tbody align="center">
                                     @forelse ($data as $item)
                                     @php
-                                    $virus =
-                                    App\Models\Virus::select('nama_virus')->where('id',$item->id_virus)->pluck('nama_virus')[0];
-                                    $genotipe =
-                                    App\Models\Genotipe::select('kode_genotipe')->where('id',$item->id_genotipe)->pluck('kode_genotipe')[0];
+                                    $virus = App\Models\Virus::select('nama_virus')->where('id',$item->id_virus)->pluck('nama_virus')[0];
+                                    $genotipe = App\Models\Genotipe::select('kode_genotipe')->where('id',$item->id_genotipe)->pluck('kode_genotipe')[0];
                                     @endphp
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->kode_sampel }}ds{{ $item->id }}</td>
+                                        <td>{{ $item->kode_sampel }}</td>
                                         <td>{{ $virus }}</td>
                                         <td>{{ $genotipe }}</td>
                                         <td>{{ tanggal_indo($item->tanggal_pengambilan) }}</td>
