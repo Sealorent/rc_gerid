@@ -134,8 +134,8 @@ class KasusController extends Controller
             'id_provinsi' => 'required',
             'id_kabupaten' => 'required',
             'id_kecamatan' => 'required',
-            'latitude' => 'required|numeric|between:-90,90',
-            'longitude' => 'required|numeric|between:-180,180',
+            'latitude' => 'required|between:-90,90',
+            'longitude' => 'required|between:-180,180',
         ]);
         try {
             $kasus = Kasus::findOrFail($id);

@@ -37,7 +37,7 @@
                         <span class="pcoded-mtext">Data Penulis</span>
                     </a>
                 </li>
-                <li class="{{ Request::segment(1) == 'pengarang' ? 'active' : '' }}">
+                <li class="{{ Request::segment(1) == 'kasus' ? 'active' : '' }}">
                     <a href="{{ route('kasus.index') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon">
                             <i class="fa fa-clipboard"></i>
