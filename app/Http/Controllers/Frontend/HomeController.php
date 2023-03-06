@@ -133,6 +133,33 @@ class HomeController extends Controller
     }
 
 
+    public function stateAwalMaps()
+    {
+        $lastDate = DB::table('tb_sampel')->select('tanggal_pengambilan')->orderByDesc('tanggal_pengambilan')->first()->tanggal_pengambilan;
+        $date = explode('-', $lastDate);
+        $data = DB::table('tb_sampel')
+            ->select(DB::raw('count(id_virus) as virus, id_provinsi, tanggal_pengambilan, id_virus'))
+            ->whereMonth('tanggal_pengambilan', $date[1])->whereYear('tanggal_pengambilan', $date[0])
+            ->where('id_virus', 1)
+            ->groupBy('id_provinsi', 'tanggal_pengambilan', 'id_virus')
+            ->get();
+
+        $mappedcollection = $data->map(function ($item, $key) {
+            return [
+                'provinsi' => strtoupper($this->getProvinsi($item->id_provinsi)),
+                'kota' => $this->getKotaCollection($item->id_provinsi, $item->tanggal_pengambilan),
+                'potensi' => $this->getPotensi($item->virus),
+                'id_virus' => $this->getVirus($item->id_virus),
+                'collection' => $this->getCollection($item->id_provinsi, $item->tanggal_pengambilan),
+                'collection_genotipe' => $this->getCollectionGenotipe($item->id_provinsi, $item->tanggal_pengambilan),
+                'jumlah_kasus' => $this->getJumlah($item->id_provinsi, $item->tanggal_pengambilan),
+            ];
+        });
+
+        return $mappedcollection;
+
+    }
+
     public function filter(Request $request)
     {
         // return $request;
@@ -144,8 +171,7 @@ class HomeController extends Controller
             ->where('id_virus', $request->id_virus)
             ->groupBy('id_provinsi', 'tanggal_pengambilan', 'id_virus')
             ->get();
-        // return $data;
-        // $data = Sampel::whereMonth('tanggal_pengambilan', $date[1])->whereYear('tanggal_pengambilan', $date[0])->groupBy('kota', 'id')->get();
+
         $mappedcollection = $data->map(function ($item, $key) {
             return [
                 'provinsi' => strtoupper($this->getProvinsi($item->id_provinsi)),
@@ -166,13 +192,7 @@ class HomeController extends Controller
         $date = explode('-', $date);
         $data = Sampel::select('tempat', 'id_provinsi')->whereMonth('tanggal_pengambilan', $date[1])->whereYear('tanggal_pengambilan', $date[0])->where('id_provinsi', $id_provinsi)->first();
         return $data;
-        // $mappedcollection = $data->map(function ($item, $key) {
-        //     return [
-        //         'tempat' => $item->tempat,
-        //         'kota' => $item->kota,
-        //     ];
-        // });
-        // return $mappedcollection;
+        
     }
 
     function getCollectionGenotipe($id_provinsi, $date)
@@ -237,4 +257,6 @@ class HomeController extends Controller
         $kab = Kabupaten::where('id', $id)->pluck('nama_kabupaten')[0];
         return $kab;
     }
+
+    
 }

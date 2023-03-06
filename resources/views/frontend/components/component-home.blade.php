@@ -154,6 +154,25 @@
             return html;
         }
 
+        // State Awal
+        $(document).ready(function () {
+            $.ajax({
+            type: "get",
+            url: "/stateAwalMaps",
+            }).done(function (result) {
+                if(result == ''){
+                    alert('mohon maaf data yang anda cari belum tersedia');
+                    $("#spinner").attr("hidden",true);
+                    map.removeLayer(potensi);
+                    legend.remove(potensi);
+                    controlLayers.removeLayer(potensi);
+                }else{
+                    getPotensi(result);
+                }
+
+            });
+        });
+
         $(".filter").on('click',function (event) {
             $("#spinner").attr("hidden",false);
             var date = $("#date").val();

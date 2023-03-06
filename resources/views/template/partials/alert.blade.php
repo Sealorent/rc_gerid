@@ -13,7 +13,6 @@
         sessionStorage.removeItem('success');
     }
     })
-
 </script>
 @endif
 @if (session('info'))

@@ -37,6 +37,14 @@
                         <span class="pcoded-mtext">Data Penulis</span>
                     </a>
                 </li>
+                <li class="{{ Request::segment(1) == 'pengarang' ? 'active' : '' }}">
+                    <a href="{{ route('kasus.index') }}" class="waves-effect waves-dark">
+                        <span class="pcoded-micon">
+                            <i class="fa fa-clipboard"></i>
+                        </span>
+                        <span class="pcoded-mtext">Data Kasus</span>
+                    </a>
+                </li>
                 <ul class="pcoded-item pcoded-left-item">
                     <li class="pcoded-hasmenu {{ Request::segment(1) == 'menu' ? 'active pcoded-trigger' : '' }}">
                         <a href="javascript:void(0)" class="waves-effect waves-dark">
@@ -52,6 +60,16 @@
                             <li class="{{ Request::segment(2) == 'genotipe' ? 'active' : '' }}">
                                 <a href="{{ route('genotipe.index') }}" class="waves-effect waves-dark">
                                     <span class="pcoded-mtext">Genotipe & Subtype</span>
+                                </a>
+                            </li>
+                            <li class="{{ Request::segment(2) == 'transmisi' ? 'active' : '' }}">
+                                <a href="{{ route('transmisi.index') }}" class="waves-effect waves-dark">
+                                    <span class="pcoded-mtext">Transmisi</span>
+                                </a>
+                            </li>
+                            <li class="{{ Request::segment(2) == 'kelompok-umur' ? 'active' : '' }}">
+                                <a href="{{ route('kelompok-umur.index') }}" class="waves-effect waves-dark">
+                                    <span class="pcoded-mtext">Kelompok Umur</span>
                                 </a>
                             </li>
                         </ul>
