@@ -55,7 +55,7 @@
                 <div class="col-6 d-flex justify-content-start  pt-1">
                     <img src="{{ asset('assets/images/logo-unair.png') }}" class="img-fluid"
                         style="height:6em;width:6em; margin-right:1em" alt="">
-                    <img src="{{ asset('assets/images/logo-polije.png') }}" class="img-fluid" alt=""
+                    <img src="{{ asset('assets/images/logo-rc_gerid_horizontal.png') }}" class="img-fluid" alt=""
                         style="height:6em;">
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">

@@ -1,4 +1,4 @@
-<nav class="pcoded-navbar">
+<nav class="pcoded-navbar mt-2">
     <div class="nav-list">
         <div class="pcoded-inner-navbar main-menu">
             <ul class="pcoded-item pcoded-left-item">

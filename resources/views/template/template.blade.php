@@ -13,7 +13,6 @@
     <meta name="author" content="colorlib" />
     <!-- Favicon icon -->
     <link rel="icon" href="{{ asset('assets/images/logo-rc_gerid.png') }}" type="image/x-icon">
-
     <!-- Head URl -->
     @include('template.partials.head')
 </head>
@@ -25,16 +24,12 @@
     </div>
     <!-- [ Pre-loader ] end -->
     <div id="pcoded" class="pcoded">
-        <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
             <!-- [ Header ] start -->
             <nav class="navbar header-navbar pcoded-header">
                 <div class="navbar-wrapper">
-                    <div class="navbar-logo">
-                        <a href="index.html">
-                            <img class="img-fluid" style="width: 3em; height: 3em;" src="{{ asset('assets/images/logo-rc_gerid.png') }}" alt="Theme-Logo" />
-                            <span style=" letter-spacing: 0.5em;">RC GERID</span>
-                        </a>
+                    <div class="navbar-logo ">
+                        <img class="img-fluid mt-2" style="width: 13em; height: 4em;" src="{{ asset('assets/images/logo-rc_gerid_horizontal_white.png') }}" alt="Theme-Logo" />
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="feather icon-menu icon-toggle-right"></i>
                         </a>
@@ -76,32 +71,7 @@
                                         <span>{{ Auth()->user()->name }}</span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
-                                    <ul class="show-notification profile-notification dropdown-menu"
-                                        data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                        <li>
-                                            <a href="#!">
-                                                <i class="feather icon-settings"></i> Settings
-
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="feather icon-user"></i> Profile
-
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="email-inbox.html">
-                                                <i class="feather icon-mail"></i> My Messages
-
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="auth-lock-screen.html">
-                                                <i class="feather icon-lock"></i> Lock Screen
-
-                                            </a>
-                                        </li>
+                                    <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                         @if ( Auth()->user()->role != 'admin')
                                         <li onclick="document.getElementById('myform').submit()">
                                             <form action="{{ route('logoutUser') }}" id="myform" method="POST">
