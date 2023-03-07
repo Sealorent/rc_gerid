@@ -215,6 +215,7 @@
                                                 class="text-danger">* </small>
                                         </label>
                                         <input type="text" name="latitude" id="latitude" value="{{ old('latitude') }}" class="form-control @error('latitude') is-invalid @enderror" placeholder="Masukkan Latitude">
+                                        <small class="text-primary fst-italic ">ex : -72.321</small>
                                         @error('latitude')
                                         <span class="invalid-feedback message">
                                             {{ $message }}
@@ -226,6 +227,7 @@
                                                 class="text-danger">* </small>
                                         </label>
                                         <input type="text" name="longitude" id="longitude" value="{{ old('longitude') }}" class="form-control @error('longitude') is-invalid @enderror" placeholder="Masukkan Longitude">
+                                        <small class="text-primary fst-italic">ex : 172.321</small>
                                         @error('longitude')
                                         <span class="invalid-feedback message">
                                             {{ $message }}

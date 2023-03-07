@@ -25,7 +25,7 @@
     })
 </script>
 @endif
-@if (session('error'))
+@if (session('errors'))
 <script>
     Swal.fire({
         icon: 'error',
