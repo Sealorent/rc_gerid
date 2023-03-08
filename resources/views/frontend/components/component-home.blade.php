@@ -142,13 +142,14 @@
         function display(param) {
             var genotipe ="";
             param.collection_genotipe.forEach(e => {
-                genotipe += `<p>`+e.genotipe.toString()+` :`+e.jumlah.toString() +`</p>`;
+                genotipe += `<p>`+e.genotipe.toString()+` =`+e.jumlah.toString() +`</p>`;
             });
             html = `<div>
-                    <p >`+param.provinsi+`</p>
+                    <h6 > Provinsi `+param.provinsi+`</h6>
                     <p >`+param.kota+`</p>
                     <p >`+param.collection.tempat+`</p>
-                    <p ">Jumlah kasus :`+param.jumlah_kasus+`</p>
+                    <p >Jumlah kasus =`+param.jumlah_kasus+`</p>
+                    <h6 class="fw-bold">Genotipe dan Subtipe :</h6>
                     `+genotipe+`
                     </div>`;
             return html;

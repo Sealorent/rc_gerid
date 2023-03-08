@@ -30,7 +30,7 @@
     Swal.fire({
         icon: 'error',
         title: 'Terjadi Kesalahan',
-        text: "{{ session()->get('error') }}",
+        text: "{{ session()->get('errors') }}",
         type: "error"
     })
 </script>
