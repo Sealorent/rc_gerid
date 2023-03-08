@@ -261,11 +261,7 @@
                 orientation:'bottom',
             });
         });
-        // $('#id_provinsi').select2({
-        //     placeholder: 'Select an option',
-        //     width: 'resolve'
-        // });
-        // $.fn.select2.defaults.set("theme", "classic");
+        
         $('#id_provinsi').change(function(){
             $.ajax({
                 type: "get",

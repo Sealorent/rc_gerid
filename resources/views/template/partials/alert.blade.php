@@ -13,7 +13,6 @@
         sessionStorage.removeItem('success');
     }
     })
-
 </script>
 @endif
 @if (session('info'))
@@ -26,12 +25,12 @@
     })
 </script>
 @endif
-@if (session('error'))
+@if (session('errors'))
 <script>
     Swal.fire({
         icon: 'error',
         title: 'Terjadi Kesalahan',
-        text: "{{ session()->get('error') }}",
+        text: "{{ session()->get('errors') }}",
         type: "error"
     })
 </script>

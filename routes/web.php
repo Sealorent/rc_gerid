@@ -4,7 +4,11 @@ use App\Http\Controllers\Backend\BankDataController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\DataSpasialController;
 use App\Http\Controllers\Backend\GenotipeController;
+use App\Http\Controllers\Backend\KasusController;
+use App\Http\Controllers\Backend\KelompokUmur;
+use App\Http\Controllers\Backend\KelompokUmurController;
 use App\Http\Controllers\Backend\PengarangController;
+use App\Http\Controllers\Backend\TransmisiController;
 use App\Http\Controllers\Backend\VirusController;
 use App\Http\Controllers\DataWilayahVirusController;
 use App\Http\Controllers\GoogleController;
@@ -24,7 +28,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-
 // Route::get('/sign-in-bank-data', [HomeController::class, 'signIn'])->name('signIn.BankData');
 
 Route::get('/sign-in', [HomeController::class, 'signIn'])->name('signIn');
@@ -42,7 +45,9 @@ Route::get('/detail-fasta/{id}', [HomeController::class, 'detailFasta'])->name('
 
 Route::get('/getData', [DataWilayahVirusController::class, 'getData'])->name('getData');
 Route::get('/kabupaten', [DataWilayahVirusController::class, 'getKabupaten'])->name('getKabupaten');
+
 // filter maps
+Route::get('/stateAwalMaps', [HomeController::class, 'stateAwalMaps']);
 Route::get('/filter', [HomeController::class, 'filter']);
 
 
@@ -63,11 +68,14 @@ Route::middleware('auth')->group(function () {
     Route::get('admin-panel', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('bank-data', BankDataController::class);
     Route::resource('data-spasial', DataSpasialController::class);
+    Route::resource('kasus', KasusController::class);
 
     Route::resource('pengarang', PengarangController::class);
     Route::prefix('menu')->group(function () {
         Route::resource('virus', VirusController::class);
         Route::resource('genotipe', GenotipeController::class);
+        Route::resource('kelompok-umur', KelompokUmurController::class);
+        Route::resource('transmisi', TransmisiController::class);
     });
 });
 

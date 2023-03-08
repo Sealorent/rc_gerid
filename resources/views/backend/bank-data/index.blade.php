@@ -101,21 +101,19 @@
                                         <td style="text-align: justify;">{{ $item->data_sekuen }}</td>
                                         <td>{{ $item->judul_artikel }}</td>
                                         <td>{{ $item->nama_pengarang.';'.$item->anggota }}</td>
-                                        <td>
-                                            <div class="d-flex justify-content-start">
-                                                <a class="btn btn-primary"
-                                                    href="{{ route('bank-data.edit',$item->id) }}"
-                                                    style="margin-right: 0.5em"><i
+                                        <td class="text-center ">
+                                                <a class="btn btn-primary m-2"
+                                                    href="{{ route('bank-data.edit',$item->id) }}"><i
                                                         class="fa fa-pencil text-center m-0"></i>
                                                 </a>
                                                 <form action="{{ route('bank-data.destroy', $item->id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit"
-                                                        onclick="return confirm('Are you sure you want to delete this item?');"
-                                                        class="btn btn-danger"><i
-                                                            class="fa fa-trash text-center m-0"></i></button>
+                                                        method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"
+                                                            onclick="return confirm('Are you sure you want to delete this item?');"
+                                                            class="btn btn-danger"><i
+                                                                class="fa fa-trash text-center m-0"></i></button>
                                                 </form>
                                             </div>
                                         </td>

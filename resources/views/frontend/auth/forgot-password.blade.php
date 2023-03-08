@@ -53,8 +53,7 @@
                     <form class="md-float-material form-material" action="{{ route('password.email') }}" method="POST">
                         @csrf
                         <div class="text-center">
-                                <img class="img-fluid" style="width: 3em; height: 3em;" src="{{ asset('assets/images/logo-rc_gerid.png') }}" alt="Theme-Logo" />
-                                <span style=" letter-spacing: 0.5em;">RC GERID</span>
+                                <img class="img-fluid"  src="{{ asset('assets/images/logo-rc_gerid_horizontal.png') }}" alt="Theme-Logo" />
                         </div>
                         <div class="auth-box card">
                             <div class="card-block">

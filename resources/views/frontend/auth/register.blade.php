@@ -56,8 +56,7 @@
                             method="POST">
                             @csrf
                             <div class="text-center">
-                                <img class="img-fluid" style="width: 3em; height: 3em;" src="{{ asset('assets/images/logo-rc_gerid.png') }}" alt="Theme-Logo" />
-                                <span style=" letter-spacing: 0.5em;">RC GERID</span>
+                                <img class="img-fluid"  src="{{ asset('assets/images/logo-rc_gerid_horizontal.png') }}" alt="Theme-Logo" />
                             </div>
                             <div class="auth-box card">
                                 <div class="card-block">
@@ -139,12 +138,11 @@
                                     <div class="row">
                                         <div class="col-md-10">
                                             <p class="text-inverse text-start m-b-0">Terimakasih</p>
-                                            <p class="text-inverse text-start">Sudah Punya Akun ?<a
-                                                    href="{{ route('signIn') }}" class="text-primary"><b> Login</b></a>
+                                            <p class="text-inverse text-start">Sudah Punya Akun ?<a href="{{ route('signIn') }}" class="text-primary"><b> Login</b></a>
                                             </p>
                                         </div>
                                         <div class="col-md-2">
-                                            <img class="img-fluid" style="width: 3em; height: 3em;" src="{{ asset('assets/images/logo-rc_gerid.png') }}" alt="Theme-Logo" />
+                                            <img class="img-fluid"  src="{{ asset('assets/images/logo-rc_gerid.png') }}" alt="Theme-Logo" />
                                         </div>
                                     </div>
                                 </div>
