@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Genotipe;
 use App\Models\Kabupaten;
+use App\Models\Kasus;
 use App\Models\Provinsi;
 use App\Models\Sampel;
 use App\Models\Sitasi;
@@ -163,15 +164,45 @@ class HomeController extends Controller
     public function filter(Request $request)
     {
         // return $request;
+        if($request->select == 'area'){
+           return $this->Area($request);
+        }else{
+            // return 'a';
+            return $this->Point($request);
+        }
+
+        
+    }
+
+    public function Point($request)
+    {
         $date = explode('-', $request->date);
 
+        $data = Kasus::select('nama','lat','long','kelompok_umur')
+                ->whereBetween('tanggal',[$date[0].'-01-01',$date[1].'-01-01'])
+                ->where('jenis_kelamin', $request->gender)
+                ->get();
+        $arr = array();
+        for ($i=0; $i <count($data) ; $i++) { 
+            $arr[]['latlong'][] = $data[$i]['lat'];
+            array_push($arr[$i]['latlong'], $data[$i]['long']);
+        }
+        return $arr;
+    }
+
+    public function Area($request)
+    {
+        $date = explode('-', $request->date);
+        // return $date;
         $data = DB::table('tb_sampel')
             ->select(DB::raw('count(id_virus) as virus, id_provinsi, tanggal_pengambilan, id_virus'))
-            ->whereMonth('tanggal_pengambilan', $date[1])->whereYear('tanggal_pengambilan', $date[0])
+            // ->whereMonth('tanggal_pengambilan', '08')
+            // ->whereYear('tanggal_pengambilan', '2017')
+            ->whereBetween('tanggal_pengambilan',[$date[0].'-01-01',$date[1].'-01-01'])
             ->where('id_virus', $request->id_virus)
             ->groupBy('id_provinsi', 'tanggal_pengambilan', 'id_virus')
             ->get();
-
+            
         $mappedcollection = $data->map(function ($item, $key) {
             return [
                 'provinsi' => strtoupper($this->getProvinsi($item->id_provinsi)),

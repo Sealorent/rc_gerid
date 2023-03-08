@@ -12,6 +12,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="{{  asset('bower_components/bootstrap/css/bootstrap.min.css') }}">
+
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -49,44 +50,41 @@
 
 <body>
 
-    <div class="container">
-        <header class="blog-header py-3">
-            <div class="row flex-nowrap justify-content-between align-items-center">
-                <div class="col-6 d-flex justify-content-start  pt-1">
-                    <img src="{{ asset('assets/images/logo-unair.png') }}" class="img-fluid"
-                        style="height:6em;width:6em; margin-right:1em" alt="">
-                    <img src="{{ asset('assets/images/logo-rc_gerid_horizontal.png') }}" class="img-fluid" alt=""
-                        style="height:6em;">
-                </div>
-                <div class="col-4 d-flex justify-content-end align-items-center">
-                    <a class="btn btn-sm btn-outline-secondary" href="{{ route('signIn') }}">Sign In</a>
+
+    <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-6 d-flex justify-content-start " style="margin-left: 2em;">
+                <img src="{{ asset('assets/images/logo-unair.png') }}" class="img-fluid"
+                    style="height:6em;width:6em; margin-right:1em" alt="">
+                <img src="{{ asset('assets/images/logo-rc_gerid_horizontal.png') }}" class="img-fluid" alt=""
+                    style="height:6em;">
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center" style="margin-right: 4em;">
+                <a class="btn btn-sm btn-outline-secondary" href="{{ route('signIn') }}">Sign In</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-light">
+        <nav class="">
+            <div class="d-flex">
+                <div class="col-12 m-3">
+                    <form action="{{ route('home.showData') }}" method="get">
+                        <div class="input-group align-middle">
+                            <div class="input-group-btn search-panel">
+                                <select class="form-control" name="req-opt" id="">
+                                    <option value="all">All Database</option>
+                                </select>
+                            </div>
+                            <input type="text" class="form-control" style="margin-right: 2em"
+                                onchange="this.form.submit()" name="req" placeholder="Search term...">
+                        </div>
+                    </form>
                 </div>
             </div>
-        </header>
-
-        <div class="bg-light">
-            <nav class="">
-                <div class="d-flex">
-                    <div class="col-12 m-3">
-                        <form action="{{ route('home.showData') }}" method="get">
-                            <div class="input-group align-middle">
-                                <div class="input-group-btn search-panel">
-                                    <select class="form-control" name="req-opt" id="">
-                                        <option value="all">All Database</option>
-                                    </select>
-                                </div>
-                                <input type="text" class="form-control" style="margin-right: 2em"
-                                    onchange="this.form.submit()" name="req" placeholder="Search term...">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-        </div>
-        </nav>
-    </div>
     </div>
 
-    <main class="container ">
+    <main >
         @yield('content')
     </main>
 
@@ -109,6 +107,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <!-- Custom js -->
     <script src="{{ asset('assets/pages/data-table/js/data-table-custom.js') }}"></script>
     {{-- @include('template.partials.script') --}}

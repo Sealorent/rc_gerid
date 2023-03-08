@@ -312,18 +312,30 @@
 
     });
     $('#id_provinsi').change(function(){
+        $.ajax({
+            type: "get",
+            url: "https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi="+$(this).val(),
+            success: function(res){
+                let data = res['kota_kabupaten'];
+                var html = '';
+                for (var i = 0; i < data.length ; ++i) {
+                    html +=`<option value="`+data[i]['id'] + `">` + data[i]['nama'] + `</option>`;
+                }
+                $('#id_kabupaten').html(html);
+            }
+        });
+    });
+    $('#id_kabupaten').change(function(){
             $.ajax({
                 type: "get",
-                url: "/kabupaten",
-                data: {
-                    id_provinsi : $('#id_provinsi').val(),
-                },
+                url: "https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota="+$(this).val(),
                 success: function(res){
+                    let data = res['kecamatan'];
                     var html = '';
-                    for (var i = 0; i < res.length ; ++i) {
-                        html +=`<option value="`+ res[i]['id'] + `">` + res[i]['nama_kabupaten'] + `</option>`;
+                    for (var i = 0; i < data.length ; ++i) {
+                        html +=`<option value="`+data[i]['id'] + `">` + data[i]['nama'] + `</option>`;
                     }
-                    $('#id_kabupaten').html(html);
+                    $('#id_kecamatan').html(html);
                 }
             });
         });
