@@ -40,6 +40,10 @@
     <script src="{{ asset('assets/slider/nouislider.js') }}"></script>
 
     <script>
+        // handle selectOption
+        function handleSelect(elm){
+            window.location = elm.value;
+        }
         $(function() {
             // MARKER INITIALIZATION
             let circleMarkerMale = {
@@ -61,6 +65,7 @@
             };
 
             let individualCases = @json($individualCases);
+            console.log(individualCases);
 
             // get current location
             let map = L.map('map').setView([individualCases[0]['lat'], individualCases[0]['long']], 12);

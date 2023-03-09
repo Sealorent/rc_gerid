@@ -1,10 +1,16 @@
 @extends('frontend.template')
 @section('content')
-    @include('frontend.components.component-individual-cases')
+@include('frontend.components.component-individual-cases')
     <div class="card mt-3 mb-1">
         <div class="card-header">
-            <div class="d-flex justify-content-center my-2">
+            <div class="d-flex justify-content-between my-2">
                 <h3> Peta Sebaran Virus</h3>
+                <div class="col-2">
+                    <select name="select" id="selectOption" class="form-control " onchange="javascript:handleSelect(this)">
+                        <option value="/individual-cases">Titik</option>
+                        <option value="/">Area</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>

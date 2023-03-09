@@ -17,6 +17,13 @@
             margin-right: 8px;
             opacity: 0.7;
         }
+        .loader {
+            position: absolute;
+            bottom: 12em;
+            align-items: center;
+            z-index: 10000000;
+            opacity: 1;
+        }
     </style>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
     <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
@@ -29,8 +36,12 @@
     <!-- <script src="{{ asset('assets/js/custom/leaflet.js') }}"></script> -->
     
     <script type="text/javascript">
-        $(function() {
+        // select Option
+        function handleSelect(elm){
+            window.location = elm.value;
+        }
 
+        $(function() {
             $("#slider-range").slider({
                 range: true,
                 min: new Date('2002-01-01').getFullYear(),
@@ -45,8 +56,6 @@
             $("#date").val($("#slider-range").slider("values", 0) + "-" + $("#slider-range").slider("values", 1));
         });
 
-
-        // set map
         // set map
         var map = L.map('map').setView([0.0005512, 123.3319888], 4.5);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -63,24 +72,24 @@
             collapsed: false
         }).addTo(map);
         // ajax base layer
-        $.ajax({
-            dataType: "json",
-            url: geoJsonUrl,
-        }).done(function(data) {
-            var baseLayer = L.geoJson(data).addTo(map);
-            controlLayers.addOverlay(baseLayer, 'Kabupaten/Kota');
-            L.geoJson(data, {
-                onEachFeature: function(feature, layer) {
-                    // WADMKK = Kota
-                    // WADMPR = Propinsi
-                    layer.bindPopup(`<p> Kabupaten : ` + feature.properties.WADMKK +
-                        `</p><p> Provinsi :` + feature.properties.WADMPR + `</p>`).addTo(baseLayer);
-                }
-            }).addTo(map);
-            if (baseLayer != null) {
-                $("#spinner").attr("hidden", true);
-            }
-        });
+        // $.ajax({
+        //     dataType: "json",
+        //     url: geoJsonUrl,
+        // }).done(function(data) {
+        //     var baseLayer = L.geoJson(data).addTo(map);
+        //     controlLayers.addOverlay(baseLayer, 'Kabupaten/Kota');
+        //     L.geoJson(data, {
+        //         onEachFeature: function(feature, layer) {
+        //             // WADMKK = Kota
+        //             // WADMPR = Propinsi
+        //             layer.bindPopup(`<p> Kabupaten : ` + feature.properties.WADMKK +
+        //                 `</p><p> Provinsi :` + feature.properties.WADMPR + `</p>`).addTo(baseLayer);
+        //         }
+        //     }).addTo(map);
+        //     if (baseLayer != null) {
+        //         $("#spinner").attr("hidden", true);
+        //     }
+        // });
 
         // color
         function getColourPotensi(d) {
@@ -180,14 +189,7 @@
                 controlLayers.removeLayer(potensi);
             }
 
-            // function connectTheDots(data){
-            //     var c = [];
-            //     for(i in result) {
-            //         c.push(result['latlong']);
-            //     }
-            //     return c;
-            // }
-            // L.polyline(connectTheDots).addTo(map)
+          
             $("#spinner").attr("hidden", true);
             $.each(result, function(key, value) {
                 const pointOptions = {

@@ -1,23 +1,20 @@
 @extends('frontend.template')
 @section('content')
-    @include('frontend.components.component-home')
-    <style>
-        .loader {
-            position: absolute;
-            bottom: 12em;
-            align-items: center;
-            z-index: 10000000;
-            opacity: 1;
-        }
-    </style>
-    <div class="card mt-3 mb-1">
-        <div class="card-header">
-            <div class="d-flex justify-content-center my-2">
-                <h3> Peta Sebaran Virus</h3>
-
-            </div>
+@include('frontend.components.component-home')
+<style>
+   
+</style>
+<div class="card-header mt-2">
+    <div class="d-flex justify-content-between my-2">
+        <h3> Peta Sebaran Virus</h3>
+        <div class="col-2">
+            <select name="select" id="selectOption" class="form-control " onchange="javascript:handleSelect(this)">
+                <option value="/">Area</option>
+                <option value="/individual-cases">Titik</option>
+            </select>
         </div>
     </div>
+</div>
     <div class="card-body">
         <div class="d-flex justify-content-center">
             <div class="spinner-border text-warning loader" id="spinner" role="status">
@@ -35,32 +32,32 @@
                             {{ $item->nama_virus }}</option>
                     @endforeach
                 </select>
-                <p>Pilih Jenis Penyebaran</p>
-                <div class="mb-3 ">
+                <!-- <p>Pilih Jenis Penyebaran</p> -->
+                <!-- <div class="mb-3 ">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="check[]" value="area" id="defaultCheck1"
                             checked />
                         <label class="form-check-label" for="defaultCheck3">Area</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="check[]" value="titik" id="defaultCheck2" />
-                        <label class="form-check-label" for="defaultCheck3">Titik</label>
+                        <input class="form-check-input" type="radio" name="check[]" value="titik" id="defaultCheck2"  onclick="window.location='/individual-cases';"/>
+                        <label class="form-check-label" for="defaultCheck3"> Titik</label>
                     </div>
-                </div>
+                </div> -->
                 <p>
+                    
                     <label for="amount">Date range: <span>
-                            <input type="text" id="date" style="border: 0; color: blue; font-weight: bold;"
-                                size="100" />
+                            <input type="text" id="date" style="border: 0; color: blue; font-weight: bold;" size="100" />
                         </span>
                     </label>
                 </p>
                 <div id="slider-range" class="mb-3"></div>
-                <p>Pilih Gender :</p>
+                <!-- <p>Pilih Gender :</p>
                 <select name="gender" id="gender" class="form-select mb-3">
                     <option value="1">Male</option>
                     <option value="2">Female</option>
-                </select>
-                <button id="filter" type="submit" class="btn btn-primary filter">Filter</button>
+                </select> -->
+                <button id="filter" type="submit" class="btn btn-primary filter " style="width: 14.5em;">Filter</button>
             </div>
             <div class="col" id="map">
             </div>
@@ -69,8 +66,6 @@
     <div class="container">
         <div class="row g-5 mt-2">
             <div class="col-md-8">
-
-
                 <article class="blog-post">
                     <h2 class="blog-post-title">Apa itu Bank Data ?</h2><br>
                     {{-- <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p> --}}
