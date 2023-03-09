@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
         $newUser = new \App\Models\User();
         $newUser->name = 'administrator';
         $newUser->email = 'admin@gmail.com';
-        $newUser->password = \Hash::make('password');
+        $newUser->password = password_hash('password', PASSWORD_DEFAULT);
         $newUser->save();
     }
 }
