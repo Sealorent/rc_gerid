@@ -1,66 +1,71 @@
 @extends('frontend.template')
 @section('content')
-    @include('frontend.components.component-home')
-    <style>
-        .loader {
-            position: absolute;
-            bottom: 12em;
-            align-items: center;
-            z-index: 10000000;
-            opacity: 1;
-        }
-    </style>
+    @include('frontend.components.component-individual-cases')
     <div class="card mt-3 mb-1">
         <div class="card-header">
             <div class="d-flex justify-content-center my-2">
                 <h3> Peta Sebaran Virus</h3>
-
             </div>
         </div>
     </div>
     <div class="card-body">
-        <div class="d-flex justify-content-center">
-            <div class="spinner-border text-warning loader" id="spinner" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-2">
-                <p>Filter</p>
-                <select name="id_virus" id="id_virus" class="form-select  @error('id_virus') is-invalid @enderror mb-3"
-                    required>
-                    <option value="">Pilih Jenis Virus</option>
-                    @foreach ($virus as $item)
-                        <option value="{{ $item->id }} ">
-                            {{ $item->nama_virus }}</option>
-                    @endforeach
-                </select>
-                <p>Pilih Jenis Penyebaran</p>
-                <div class="mb-3 ">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="check[]" value="area" id="defaultCheck1"
-                            checked />
-                        <label class="form-check-label" for="defaultCheck3">Area</label>
+                <h3 class="text-lg font-semibold mb-4">Filter</h3>
+                <div class="mb-3">
+                    <label for="gender" class="form-label">Gender</label>
+                    <select id="gender" class="form-select" aria-label="Default select example">
+                        <option selected disabled>Choose...</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                {{-- multi min max range year slider --}}
+                <div class="d-inline">
+                    <div class="mb-3">
+                        <label for="startYear" class="form-label">Tahun Mulai</label>
+                        <select id="startYear" class="form-select" aria-label="Default select example">
+                            @foreach ($years as $year)
+                                @if ($loop->first)
+                                    <option value="{{ $year->year }}" selected>{{ $year->year }}</option>
+                                @else
+                                    <option value="{{ $year->year }}">{{ $year->year }}</option>
+                                @endif
+                            @endforeach
+                        </select>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="check[]" value="titik" id="defaultCheck2" />
-                        <label class="form-check-label" for="defaultCheck3">Titik</label>
+                    <div class="mb-3">
+                        <label for="endYear" class="form-label">Tahun Selesai</label>
+                        <select id="endYear" class="form-select" aria-label="Default select example">
+                            @foreach ($years as $year)
+                                @if ($loop->first)
+                                    <option value="{{ $year->year }}" selected>{{ $year->year }}</option>
+                                @else
+                                    <option value="{{ $year->year }}">{{ $year->year }}</option>
+                                @endif
+                            @endforeach
+                        </select>
                     </div>
                 </div>
-                <p>
-                    <label for="amount">Date range: <span>
-                            <input type="text" id="date" style="border: 0; color: blue; font-weight: bold;"
-                                size="100" />
-                        </span>
-                    </label>
-                </p>
-                <div id="slider-range" class="mb-3"></div>
-                <p>Pilih Gender :</p>
-                <select name="gender" id="gender" class="form-select mb-3">
-                    <option value="1">Male</option>
-                    <option value="2">Female</option>
-                </select>
-                <button id="filter" type="submit" class="btn btn-primary filter">Filter</button>
+                <div class="d-grid">
+                    <button type="button" id="btnFilter" class="btn btn-primary">
+                        Jalankan Filter
+                    </button>
+                </div>
+
+                {{-- Slider --}}
+                <div id="slider" class="mt-4 mb-4"></div>
+                <div class="d-grid gap-2">
+                    <button type="button" id="btnTimelapse" class="btn btn-primary w-full">
+                        Jalankan Timelapse
+                    </button>
+
+                    {{-- button reset all filter --}}
+                    <button type="button" id="btnReset" class="btn btn-danger">
+                        Reset Filter
+                    </button>
+                </div>
             </div>
             <div class="col" id="map">
             </div>
@@ -69,8 +74,6 @@
     <div class="container">
         <div class="row g-5 mt-2">
             <div class="col-md-8">
-
-
                 <article class="blog-post">
                     <h2 class="blog-post-title">Apa itu Bank Data ?</h2><br>
                     {{-- <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p> --}}

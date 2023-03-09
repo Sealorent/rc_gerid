@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Genotipe;
+use App\Models\IndividualCases;
 use App\Models\Kabupaten;
 use App\Models\Kasus;
 use App\Models\Provinsi;
@@ -288,5 +289,11 @@ class HomeController extends Controller
         return $kab;
     }
 
-    
+    public function individualCases()
+    {
+        return view('frontend.individual-cases', [
+            'individualCases' => IndividualCases::all(),
+            'years' => IndividualCases::select('year')->distinct()->groupBy('year')->get(),
+        ]);
+    }
 }

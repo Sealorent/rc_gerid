@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/individual-cases', [HomeController::class, 'individualCases'])->name('home.individual-cases');
 // Route::get('/sign-in-bank-data', [HomeController::class, 'signIn'])->name('signIn.BankData');
 
 Route::get('/sign-in', [HomeController::class, 'signIn'])->name('signIn');

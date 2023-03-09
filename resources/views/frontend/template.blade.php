@@ -7,11 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>{{ env('APP_NAME')}}</title>
+    <title>{{ env('APP_NAME') }}</title>
     <link rel="icon" href="{{ asset('assets/images/logo-rc_gerid.png') }}" type="image/x-icon">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" type="text/css" href="{{  asset('bower_components/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/css/bootstrap.min.css') }}">
 
     <style>
         .bd-placeholder-img {
@@ -84,7 +84,7 @@
             </div>
     </div>
 
-    <main >
+    <main>
         @yield('content')
     </main>
 
@@ -101,27 +101,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
 
     @stack('js')
-    <script src="{{ asset('assets/pages/waves/js/waves.min.js') }}"></script>
-
-    <script type="text/javascript" src="{{ asset('bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <!-- Custom js -->
-    <script src="{{ asset('assets/pages/data-table/js/data-table-custom.js') }}"></script>
+    @if (Route::currentRouteName() != 'home.individual-cases')
+        <script src="{{ asset('assets/pages/waves/js/waves.min.js') }}"></script>
+
+        <script type="text/javascript" src="{{ asset('bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+        <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+        <script src="{{ asset('assets/pages/data-table/js/data-table-custom.js') }}"></script>
+    @endif
     {{-- @include('template.partials.script') --}}
     <script type="text/javascript">
-        $(document).ready(function(e){
-        $('.search-panel .dropdown-menu').find('a').click(function(e) {
-            e.preventDefault();
-            var param = $(this).attr("href").replace("#","");
-            var concept = $(this).text();
-            $('.search-panel span#search_concept').text(concept);
-            $('.input-group #search_param').val(param);
+        $(document).ready(function(e) {
+            $('.search-panel .dropdown-menu').find('a').click(function(e) {
+                e.preventDefault();
+                var param = $(this).attr("href").replace("#", "");
+                var concept = $(this).text();
+                $('.search-panel span#search_concept').text(concept);
+                $('.input-group #search_param').val(param);
+            });
         });
-    });
     </script>
 
 
