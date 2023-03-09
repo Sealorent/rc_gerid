@@ -273,9 +273,9 @@
             })
             $('#date').datepicker({
                 autoclose: true,
-                viewMode: 'years',
-                format: 'yyyy-mm',
-                minViewMode: 1,
+                format: "yyyy",
+                viewMode: "years", 
+                minViewMode: "years",
                 zIndexOffset : 999,
                 orientation:'bottom',
             });

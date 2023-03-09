@@ -24,7 +24,7 @@ class DataSpasialController extends Controller
             ->orderByDesc('tb_sitasi.created_at')
             ->get();
         $virus = Virus::all();
-        // return $data;
+        
         return view('backend.data-spatial.index', compact('data', 'virus'));
     }
 

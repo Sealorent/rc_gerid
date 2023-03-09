@@ -167,7 +167,6 @@ class HomeController extends Controller
         if($request->select == 'area'){
            return $this->Area($request);
         }else{
-            // return 'a';
             return $this->Point($request);
         }
 

@@ -62,7 +62,6 @@
                                         <th >Umur</th>
                                         <th >Tahun</th>
                                         <th >Opsi</th>
-
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -82,7 +81,7 @@
                                         <td >{{ $loop->iteration }}</td>
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ $item->alamat }}</td>
-                                        <td>{{ $item->nama == 1 ? 'Male' : 'Female' }}</td>
+                                        <td>{{ $item->jenis_kelamin == 1 ? 'Male' : 'Female' }}</td>
                                         <td>{{ $item->umur }}</td>
                                         <td>{{ date('Y', strtotime($item->tanggal)) }}</td>
                                         <td class="text-center">
